@@ -7,6 +7,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     UV_LINK_MODE=copy
 
 RUN useradd --create-home --uid 1000 user \
+    && mkdir -p /app \
+    && chown user:user /app \
     && pip install --no-cache-dir uv==0.11.29
 
 WORKDIR /app

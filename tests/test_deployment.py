@@ -21,6 +21,7 @@ def test_container_uses_precompiled_transducers_and_non_root_user() -> None:
     dockerfile = (PROJECT_ROOT / "Dockerfile").read_text(encoding="utf-8")
 
     assert "USER user" in dockerfile
+    assert "chown user:user /app" in dockerfile
     assert "fst/artifacts" in dockerfile
     assert "scripts/build_fst.sh" not in dockerfile
     assert "uv sync --frozen --no-dev" in dockerfile
