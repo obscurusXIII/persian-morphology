@@ -1,0 +1,43 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_hugging_face_metadata_matches_container_port() -> None:
+    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+    dockerfile = (PROJECT_ROOT / "Dockerfile").read_text(encoding="utf-8")
+
+    assert readme.startswith("---\n")
+    assert "\nsdk: docker\n" in readme
+    assert "\napp_port: 7860\n" in readme
+    assert "EXPOSE 7860" in dockerfile
+    assert '"--port", "7860"' in dockerfile
+
+
+def test_container_uses_precompiled_transducers_and_non_root_user() -> None:
+    dockerfile = (PROJECT_ROOT / "Dockerfile").read_text(encoding="utf-8")
+
+    assert "USER user" in dockerfile
+    assert "fst/artifacts" in dockerfile
+    assert "scripts/build_fst.sh" not in dockerfile
+    assert "uv sync --frozen --no-dev" in dockerfile
+
+
+def test_frontend_has_both_tools_and_no_external_runtime_assets() -> None:
+    html = (PROJECT_ROOT / "static" / "index.html").read_text(encoding="utf-8")
+
+    for element_id in (
+        'id="analyze-form"',
+        'id="generate-form"',
+        'id="analyze-response"',
+        'id="generate-response"',
+    ):
+        assert element_id in html
+
+    assert '<script src="/app.js" defer></script>' in html
+    assert '<link rel="stylesheet" href="/app.css" />' in html
+    assert "fonts.googleapis.com" not in html
+    assert "cdn." not in html

@@ -1,3 +1,13 @@
+---
+title: Persian Verbal Morphology
+emoji: 🌿
+colorFrom: green
+colorTo: yellow
+sdk: docker
+app_port: 7860
+suggested_hardware: cpu-basic
+---
+
 # Persian Morphology
 
 An HFST analyzer/generator for the formal Persian verbal structures described
@@ -142,5 +152,57 @@ evaluator.
 uv run python main.py serve --host 0.0.0.0 --port 8000
 ```
 
-Open <http://localhost:8000>.  FastAPI documentation is available at
+Open <http://localhost:8000>. The single-page interface exposes both the
+analyzer and generator and shows normalization changes, ambiguity, individual
+feature tags, and HFST weights. FastAPI documentation is available at
 <http://localhost:8000/docs>.
+
+The public API is deliberately small:
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/health` | container liveness and application version |
+| `GET` | `/api/capabilities` | implemented and deferred linguistic scope |
+| `POST` | `/api/normalize` | conservative Persian Unicode normalization |
+| `POST` | `/api/analyze` | surface form to all licensed analyses |
+| `POST` | `/api/generate` | analysis to all licensed surface forms |
+
+For example:
+
+```bash
+curl -s http://localhost:8000/api/analyze \
+  -H 'content-type: application/json' \
+  -d '{"text":"نمی‌روم"}'
+```
+
+## Docker
+
+The production image contains only the application, static interface, and
+precompiled analyzer/generator artifacts. It does not rebuild the grammar at
+container startup.
+
+```bash
+docker build -t persian-morphology .
+docker run --rm -p 7860:7860 persian-morphology
+```
+
+Then open <http://localhost:7860> or check
+<http://localhost:7860/health>.
+
+## Hugging Face Spaces
+
+This repository is ready for a Docker Space. The metadata block at the top of
+this README selects the Docker SDK and port `7860`; CPU Basic is sufficient.
+No application secrets or persistent storage are required.
+
+1. Create a new Hugging Face Space and choose **Docker** as its SDK.
+2. Add the Space repository as another Git remote.
+3. Push the reviewed `main` branch to the Space.
+
+```bash
+git remote add space https://huggingface.co/spaces/YOUR_NAME/YOUR_SPACE
+git push space main
+```
+
+Use a Hugging Face write token when Git asks you to authenticate; do not store
+the token in this repository. Every push to the Space triggers a rebuild.
