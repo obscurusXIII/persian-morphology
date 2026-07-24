@@ -1,0 +1,29 @@
+case_id	surface	expected_analyses	category	source	pages	status	notes
+rav-past-3sg	رفت	رو+V+Past+Ind+P3+Sg	simple-past	Anousheh ch. 4	634; 683-685; 844-858	book-derived	Abstract root √رو; رف is the VI selected next to D.
+rav-past-1sg	رفتم	رو+V+Past+Ind+P1+Sg	simple-past	Anousheh ch. 4	657-664; 683-685	book-derived	Formal written form has only the simple-past analysis in the current grammar.
+rav-past-3pl	رفتند	رو+V+Past+Ind+P3+Pl	simple-past	Anousheh ch. 4	657-664; 683-685	book-derived	Plural agreement with the D-adjacent root VI.
+rav-inf	رفتن	رو+V+Inf	infinitive	Anousheh ch. 4	683-685; 844-858	book-derived	Infinitive is analyzed with DAn rather than a stored past stem.
+rav-part-perfect-3sg	رفته	رو+V+Part | رو+V+Pres+Ind+Perf+P3+Sg	ambiguity	Anousheh ch. 4	678-680; 844-861	book-derived	Bare De form is both participial and finite perfect because the 3sg auxiliary is zero.
+rav-past-prog-1sg	می‌رفتم	رو+V+Past+Ind+Prog+P1+Sg	past-progressive	Anousheh ch. 4	724-725; 861-864	book-derived	می realizes the progressive structure.
+rav-pres-prog-1sg	می‌روم	رو+V+Pres+Ind+Prog+P1+Sg	present-progressive	Anousheh ch. 4	724-725; 861-864	book-derived	Present indicative progressive with the elsewhere VI رو.
+rav-pres-prog-neg-1sg	نمی‌روم	رو+V+Pres+Ind+Prog+Neg+P1+Sg	negative-progressive	Anousheh ch. 4	724-725; 855-864	book-derived	Negative precedes the progressive realization.
+rav-pres-prog-neg-3pl	نمی‌روند	رو+V+Pres+Ind+Prog+Neg+P3+Pl	negative-progressive	Anousheh ch. 4	657-664; 724-725	book-derived	Word-only input receives the ordinary plural reading of ند.
+rav-perfect-pres-1sg	رفته‌ام	رو+V+Pres+Ind+Perf+P1+Sg	present-perfect	Anousheh ch. 4	678-680; 855-861	book-derived	De plus the 1sg enclitic of √باش.
+rav-perfect-pres-3pl	رفته‌اند	رو+V+Pres+Ind+Perf+P3+Pl	present-perfect	Anousheh ch. 4	678-680; 855-861	book-derived	De plus the number-underspecified 3rd-person enclitic.
+rav-perfect-past-neg-1sg	نرفته بودم	رو+V+Past+Ind+Perf+Neg+P1+Sg	past-perfect	Anousheh ch. 4	855-861	book-derived	Main verb carries De; √باش carries D and agreement.
+rav-perfect-past-neg-3pl	نرفته بودند	رو+V+Past+Ind+Perf+Neg+P3+Pl	past-perfect	Anousheh ch. 4	855-861	book-derived	Negative past perfect with plural agreement on √باش.
+rav-future-neg-1sg	نخواهم رفت	رو+V+Fut+Ind+Neg+P1+Sg	future	Anousheh ch. 4	859-861	book-derived	Negation attaches to inflected خواه before the truncated infinitive.
+rav-future-3sg	خواهد رفت	رو+V+Fut+Ind+P3+Sg	future	Anousheh ch. 4	859-861	book-derived	Inflected modal auxiliary followed by the main verb's truncated infinitive.
+rav-preverb-neg-prog-3pl	درنمی‌روند	رو+V+PV=در+Pres+Ind+Prog+Neg+P3+Pl	preverb	Anousheh ch. 4	724-725	book-derived	Preverb is separate from √رو and precedes Neg and Prog.
+neshin-caus-neg-prog-1pl	نمی‌نشاندیم	نشین+V+Caus+Past+Ind+Prog+Neg+P1+Pl	causative	Anousheh ch. 4	861-864	book-derived	Causative ان is not flattened into the root.
+khor-imp-subj-2pl	بخورید	خور+V+Imp+P2+Pl | خور+V+Pres+Subj+P2+Pl	ambiguity	Anousheh ch. 4	680-690	book-derived	Imperative and subjunctive structures are homographic in 2pl.
+khor-imp-2sg	بخور	خور+V+Imp+P2+Sg	imperative	Anousheh ch. 4	680-690	book-derived	Imperative 2sg has zero agreement.
+khor-imp-neg-2sg	نخور	خور+V+Imp+Neg+P2+Sg	imperative	Anousheh ch. 4	680-690	book-derived	Negative imperative replaces positive b- with n-.
+khor-subj-1sg	بخورم	خور+V+Pres+Subj+P1+Sg	subjunctive	Anousheh ch. 4	680-690	book-derived	Positive present subjunctive.
+saz-past-1sg	ساختم	ساز+V+Past+Ind+P1+Sg	root-allomorphy	Anousheh ch. 4	844-858	book-derived	ساخ is D-adjacent; ساز is the abstract root represented in analysis.
+saz-inf	ساختن	ساز+V+Inf	infinitive	Anousheh ch. 4	844-858	book-derived	Infinitive with root allomorphy and DAn.
+saz-part-perfect-3sg	ساخته	ساز+V+Part | ساز+V+Pres+Ind+Perf+P3+Sg	ambiguity	Anousheh ch. 4	678-680; 844-861	book-derived	Participle/perfect ambiguity parallels رفته.
+bin-past-1pl	دیدیم	بین+V+Past+Ind+P1+Pl	root-allomorphy	Anousheh ch. 4	657-664; 844-858	book-derived	دی is D-adjacent; بین is the abstract root represented in analysis.
+normalize-arabic-mi-space	نمي روم	رو+V+Pres+Ind+Prog+Neg+P1+Sg	normalization	Implementation normalization		implementation-derived	Arabic ي and separated نمی are normalized before lookup.
+normalize-perfect-space	رفته ام	رو+V+Pres+Ind+Perf+P1+Sg	normalization	Implementation normalization		implementation-derived	A separated formal perfect clitic is normalized to ZWNJ spelling.
+reject-double-agreement	رفتیمم	∅	rejection	Implementation grammar contract		implementation-derived	Two consecutive agreement suffixes are outside the compiled verbal grammar.

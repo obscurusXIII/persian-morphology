@@ -107,6 +107,35 @@ uv run pytest
 The test session rebuilds both transducers and checks book-cited golden forms,
 ambiguities, rejected obsolete tags, normalization, generation, and round trips.
 
+## Gold evaluation
+
+The editable corpus at `tests/data/gold_verbs.tsv` stores one surface form and
+its complete expected analysis set per row, together with its category, source
+pages, review status, and notes. Separate legitimate analyses with `|`; use
+`∅` when the expected result is no analysis.
+
+Run exact-set evaluation with:
+
+```bash
+uv run python scripts/evaluate.py
+```
+
+An evaluation case passes only when the analyzer returns exactly the expected
+set. This means both missing analyses and unjustified additional analyses are
+failures. Useful options include:
+
+```bash
+uv run python scripts/evaluate.py --show-passes
+uv run python scripts/evaluate.py --category ambiguity
+uv run python scripts/evaluate.py --status professor-confirmed
+uv run python scripts/evaluate.py --json
+```
+
+The linguistic cases in the initial corpus are book-derived; normalization and
+rejection cases are marked `implementation-derived`. The `status` field can
+later be changed to values such as `professor-confirmed` without modifying the
+evaluator.
+
 ## Web interface
 
 ```bash
