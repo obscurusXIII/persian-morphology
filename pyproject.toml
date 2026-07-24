@@ -5,11 +5,22 @@ description = "A finite-state Persian morphological analyzer using HFST, and bas
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 dependencies = [
+    "fastapi>=0.139.0",
     "hfst>=3.16.0.1",
+    "uvicorn>=0.51.0",
 ]
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28.1",
     "pytest>=9.1.1",
     "ruff>=0.15.20",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

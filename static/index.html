@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>تحلیل صرفی فارسی</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <main>
+      <h1>تحلیل صرفی فارسی</h1>
+      <form id="analyze-form">
+        <label for="word">واژه یا صورت فعلی</label>
+        <div class="controls">
+          <input id="word" name="word" value="می‌روم" autocomplete="off" />
+          <button type="submit">تحلیل</button>
+        </div>
+      </form>
+      <pre id="result" aria-live="polite"></pre>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

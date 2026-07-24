@@ -1,0 +1,9 @@
+! Human-maintained source note.
+!
+! The executable lexc is generated at fst/generated/verbs.lexc from:
+!   - data/lexicon/verbs.tsv        abstract roots and contextual VIs
+!   - fst/src/book_rules.tsv        chapter-backed terminal/Vocabulary rules
+!
+! scripts/generate_lexc.py expands those rules into finite lexical/surface
+! paths.  Keeping the expansion generated prevents 351 source verbs from
+! being copied into a hand-maintained continuation-class lexicon.

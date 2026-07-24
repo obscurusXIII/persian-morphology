@@ -1,0 +1,25 @@
+rule_id	analysis	vocabulary_item_or_operation	condition	printed_pages
+ROOT-CAT	√ROOT + v	+V	A category-neutral root merges with verbalizing v.	619-634
+ROOT-D-ALLOMORPHY	√ROOT	root-specific VI (e.g. √رو → رف)	The specific VI is inserted when D is adjacent; the elsewhere VI occurs otherwise.	682-689; 844-858
+D-EXPONENT	D	د / ت	Persian has one underspecified dental exponent; voicing is automatic. Orthographic class comes from the attested formal source pair.	844-858
+INFINITIVE	√ROOT + v + D + An	+Inf; D + ن	The infinitive contains D plus An, not a stored past stem.	844-855
+PARTICIPLE	√ROOT + v + D + e	+Part; D + ه	The participle/perfect Part exponent contains the same D.	844-861
+AGR-1SG	Verbal Agr, P1, Sg	م	Specific singular agreement VI.	657-664
+AGR-2SG	Verbal Agr, P2, Sg	ی	Specific singular agreement VI.	657-664
+AGR-3SG-PRES	Verbal Agr, P3, Sg	د	Present/nonpast third-singular agreement VI.	657-664
+AGR-3SG-PAST	Verbal Agr, P3, Sg, Past	∅	The more-specific zero VI wins in past 3sg.	657-664
+AGR-1	Verbal Agr, P1	یم	Number-underspecified VI; the word-only analyzer returns ordinary plural, while contextual singular requires syntax outside its input.	657-664
+AGR-2	Verbal Agr, P2	ید	Number-underspecified VI; the word-only analyzer returns ordinary plural, while contextual singular requires syntax outside its input.	657-664
+AGR-3	Verbal Agr, P3	ند	Number-underspecified VI; the word-only analyzer returns ordinary plural, while contextual singular requires syntax outside its input.	657-664
+POLARITY-POS	(no Neg node)	∅	Positive polarity is absence of negative morphology; no +Pos feature is introduced.	724-725; 855-864
+NEG	Neg	nE- → ن-/نی-/نمی-	The negative VI has phonologically/contextually conditioned written allomorphs.	724-725; 855-864
+PROGRESSIVE	Part + Prog	می-	Fusion realizes Part/Prog in present and past imperfective structures; the analyzer tag is +Prog.	724-725; 861-864
+PREVERB	PV + Neg + Prog + V	preverb precedes ن- and می-	The nonverbal predicate/preverb is structurally separate from the root; +PV=… is implementation notation.	724-725
+SUBJUNCTIVE	Pres + Subj	ب-/∅ plus root VI and agreement	Positive b- is absent after a preverb; negative n- replaces it.	680-690
+IMPERATIVE	Imp + P2	ب-/∅ plus root VI; 2sg Agr = ∅	Imperative differs from subjunctive even where 2pl forms are homophonous.	680-690
+PRESENT-PERFECT	Pres + Ind + Perf	Dه + enclitic √باش	The 3sg enclitic is zero, making a bare participial surface ambiguous.	678-680; 855-861
+PAST-PERFECT	Past + Ind + Perf	Dه + بود + Agr	The main root carries Part/De and √باش carries past D and agreement.	855-861
+FUTURE	Fut + Ind	خواه + Agr + truncated infinitive (Part-D)	The inflected modal auxiliary precedes the main verb; Neg attaches to خواه.	859-861
+CAUSATIVE	√ROOT + v + Caus + Part + Prog + T	ان	Caus is a separate node/exponent and must not be flattened into the root.	861-864
+VOICE-SCOPE	voice	deferred	The volume does not provide a complete passive/voice analysis; no +Act or passive paradigm is invented.	865-866
+DEFERRED-FORMS	complex aspect/mood/serial/passive structures	not compiled	The chapter explicitly postpones several complex verbal structures; the prototype does not infer them.	865-866

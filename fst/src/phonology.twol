@@ -1,0 +1,20 @@
+! Declarative record of the dental realization layer (printed pp. 844--858).
+!
+! Dvd and Dvl are not two past morphemes.  They are orthographic classes
+! supplied by the attested formal pair because Persian spelling does not expose
+! every conditioning phonological segment.  This transducer is composed with
+! the lexc result before optimization.
+
+Alphabet
+    Dvd:د
+    Dvl:ت
+    د:د
+    ت:ت
+;
+
+Rules
+    "Dental D after a voiced environment"
+    Dvd:د <=> _ ;
+
+    "Dental D after a voiceless environment"
+    Dvl:ت <=> _ ;
