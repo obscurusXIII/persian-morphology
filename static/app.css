@@ -257,11 +257,10 @@ main {
 
 .hero-headline {
   display: grid;
-  min-height: 182px;
-  padding: 2.4rem max(1.5rem, calc((100vw - 1180px) / 2)) 2rem;
+  min-height: 145px;
+  padding: 0 max(1.3rem, calc((100vw - 1180px) / 2)) 1.8rem;
   align-items: end;
   gap: 3rem;
-  border-bottom: 1px solid var(--line);
   text-align: right;
   background: var(--cream);
   grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.35fr);
@@ -332,23 +331,12 @@ main {
 
 .hero-section {
   position: relative;
-  padding: 2rem max(1.5rem, calc((100vw - 1180px) / 2)) 4.5rem;
+  padding: 0 max(1.5rem, calc((100vw - 1180px) / 2)) 4.5rem;
   background:
     linear-gradient(rgb(139 90 60 / 4%) 1px, transparent 1px),
     linear-gradient(90deg, rgb(139 90 60 / 4%) 1px, transparent 1px),
     var(--cream);
   background-size: 48px 48px;
-}
-
-.hero-section::before {
-  position: absolute;
-  right: max(1.5rem, calc((100vw - 1180px) / 2));
-  bottom: 1rem;
-  color: rgb(139 90 60 / 35%);
-  content: "ریشه  ←  ویژگی‌ها  ←  صورت";
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
 }
 
 .workbench {
@@ -367,8 +355,8 @@ main {
 
 .workbench-header {
   display: flex;
-  min-height: 104px;
-  padding: 1.35rem 1.75rem;
+  min-height: 90px;
+  padding: 1rem 1.5rem;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -415,21 +403,6 @@ main {
     transform 150ms ease;
 }
 
-.tab::before {
-  margin-left: 0.45rem;
-  color: var(--taupe);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.65em;
-}
-
-#analyze-tab::before {
-  content: "۰۱";
-}
-
-#generate-tab::before {
-  content: "۰۲";
-}
-
 .tab:hover {
   border-color: var(--cream);
   color: white;
@@ -444,13 +417,13 @@ main {
 }
 
 .tool-panel {
-  padding: 0 1rem 1rem;
+  padding: 0 0.85rem 0.85rem;
 }
 
 .tool-grid {
   display: grid;
   overflow: hidden;
-  min-height: 23rem;
+  min-height: 21.5rem;
   border: 1px solid var(--ink);
   border-radius: 0.15rem;
   background: var(--paper);
@@ -461,7 +434,7 @@ main {
 .query-column,
 .response-column {
   min-width: 0;
-  padding: 2rem;
+  padding: 1.65rem;
 }
 
 .query-column {
@@ -706,7 +679,7 @@ textarea:focus {
 .error-state,
 .no-results {
   display: grid;
-  min-height: 18rem;
+  min-height: 16.5rem;
   place-content: center;
   justify-items: center;
   text-align: center;
@@ -1273,10 +1246,6 @@ img.footer-vakav:hover {
 
   .hero-section {
     padding: 1.25rem 0.65rem 6.5rem;
-  }
-
-  .hero-section::before {
-    display: none;
   }
 
   .workbench {

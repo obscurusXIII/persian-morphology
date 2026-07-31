@@ -438,17 +438,14 @@ const errorRouteSvg = errorRoute?.querySelector("svg");
 const errorRoutePath = errorRoute?.querySelector(".error-route-path");
 const errorRouteLabel = errorRoute?.querySelector(".error-route-label");
 
-function roundedErrorRoute(points, radius = 22) {
-  const [start, elbow, track, drop] = points;
-  const horizontalDirection = Math.sign(track.x - elbow.x) || 1;
+function roundedBottomErrorRoute(start, track, drop, radius = 22) {
+  const horizontalDirection = Math.sign(track.x - start.x) || 1;
   const horizontalRadius = radius * horizontalDirection;
 
   return [
     `M ${start.x} ${start.y}`,
-    `H ${elbow.x + radius}`,
-    `Q ${elbow.x} ${start.y} ${elbow.x} ${start.y + radius}`,
     `V ${track.y - radius}`,
-    `Q ${elbow.x} ${track.y} ${elbow.x + horizontalRadius} ${track.y}`,
+    `Q ${start.x} ${track.y} ${start.x + horizontalRadius} ${track.y}`,
     `H ${track.x - horizontalRadius}`,
     `Q ${track.x} ${track.y} ${track.x} ${track.y + radius}`,
     `V ${drop.y}`,
@@ -466,7 +463,6 @@ function layoutErrorRoute() {
   const isCompact = window.matchMedia("(max-width: 640px)").matches;
 
   let start;
-  let elbow;
   let track;
   let drop;
 
@@ -476,7 +472,6 @@ function layoutErrorRoute() {
       x: centerX,
       y: workbenchRect.bottom - flowRect.top - 3,
     };
-    elbow = { x: centerX, y: start.y };
     track = {
       x: centerX,
       y: reportRect.top - flowRect.top - 54,
@@ -490,13 +485,13 @@ function layoutErrorRoute() {
       `M ${start.x} ${start.y} V ${drop.y}`,
     );
   } else {
+    const undersideOffset = Math.max(
+      64,
+      Math.min(88, workbenchRect.width * 0.07),
+    );
     start = {
-      x: workbenchRect.left - flowRect.left + 5,
-      y: workbenchRect.top - flowRect.top + workbenchRect.height * 0.46,
-    };
-    elbow = {
-      x: Math.max(26, start.x - Math.min(90, flowRect.width * 0.07)),
-      y: start.y,
+      x: workbenchRect.left - flowRect.left + undersideOffset,
+      y: workbenchRect.bottom - flowRect.top - 3,
     };
     track = {
       x: reportRect.left - flowRect.left + reportRect.width * 0.62,
@@ -508,7 +503,7 @@ function layoutErrorRoute() {
     };
     errorRoutePath.setAttribute(
       "d",
-      roundedErrorRoute([start, elbow, track, drop]),
+      roundedBottomErrorRoute(start, track, drop),
     );
   }
 
@@ -518,7 +513,7 @@ function layoutErrorRoute() {
   );
 
   if (errorRouteLabel) {
-    const labelX = isCompact ? start.x : (elbow.x + track.x) / 2;
+    const labelX = isCompact ? start.x : (start.x + track.x) / 2;
     const labelY = isCompact ? (start.y + drop.y) / 2 : track.y;
     errorRouteLabel.style.left = `${labelX}px`;
     errorRouteLabel.style.top = `${labelY}px`;
