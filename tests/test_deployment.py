@@ -39,7 +39,7 @@ def test_frontend_has_both_tools_and_no_external_runtime_assets() -> None:
     ):
         assert element_id in html
 
-    assert '<script src="/app.js" defer></script>' in html
+    assert '<script src="/app.js?v=20260731-1" defer></script>' in html
     assert '<link rel="stylesheet" href="/app.css" />' in html
     assert "fonts.googleapis.com" not in html
     assert "cdn." not in html

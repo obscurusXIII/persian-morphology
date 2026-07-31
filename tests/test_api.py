@@ -114,6 +114,13 @@ def test_static_frontend_is_served() -> None:
 
     assert response.status_code == 200
     assert 'id="analyze-form"' in response.text
+    assert '/assets/images/vakav-favicon-framed.png' in response.text
+    assert '/app.js?v=20260731-1' in response.text
+
+    favicon = client.get("/assets/images/vakav-favicon-framed.png")
+    assert favicon.status_code == 200
+    assert favicon.headers["content-type"] == "image/png"
+    assert favicon.content.startswith(b"\x89PNG\r\n\x1a\n")
 
 
 def test_frontend_fonts_are_served_and_declared_correctly() -> None:
@@ -152,4 +159,6 @@ def test_frontend_health_check_recovers_from_render_cold_starts() -> None:
     assert 'cache: "no-store"' in javascript.text
     assert 'payload.status !== "ok"' in javascript.text
     assert 'setServiceState("checking", "در حال اتصال به سامانه")' in javascript.text
+    assert "serviceLastSuccessfulAt" in javascript.text
+    assert javascript.text.count("markServiceAvailable();") >= 2
     assert 'window.addEventListener("online"' in javascript.text

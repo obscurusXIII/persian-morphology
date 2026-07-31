@@ -99,6 +99,8 @@ async function requestJson(url, body) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+  // Any HTTP response from an application endpoint proves the service is awake.
+  markServiceAvailable();
   const payload = await response.json();
   if (!response.ok) {
     throw new Error(errorMessage(payload, `HTTP ${response.status}`));
@@ -353,11 +355,17 @@ const serviceRequestTimeout = 12000;
 const serviceRecheckAfter = 60000;
 let serviceCheckPromise = null;
 let serviceLastCheckedAt = 0;
+let serviceLastSuccessfulAt = 0;
 
 function setServiceState(state, label) {
   serviceState.classList.remove("is-checking", "is-online", "is-offline");
   serviceState.classList.add(`is-${state}`);
   serviceStateLabel.textContent = label;
+}
+
+function markServiceAvailable() {
+  serviceLastSuccessfulAt = Date.now();
+  setServiceState("online", "سامانه آماده است");
 }
 
 function wait(milliseconds) {
@@ -382,6 +390,7 @@ async function probeService() {
     if (payload.status !== "ok") {
       throw new Error("Unexpected health response");
     }
+    markServiceAvailable();
   } finally {
     window.clearTimeout(timeout);
   }
@@ -397,14 +406,19 @@ async function runServiceCheck() {
 
     try {
       await probeService();
-      setServiceState("online", "سامانه آماده است");
       return;
     } catch {
       // Render may reject a request while a free instance is waking up.
     }
   }
 
-  setServiceState("offline", "سامانه در دسترس نیست");
+  // Do not let an older failed probe overwrite a successful analyzer/generator
+  // request that completed while Render was waking up.
+  const recentlyReachedService =
+    Date.now() - serviceLastSuccessfulAt < serviceRecheckAfter;
+  if (!recentlyReachedService) {
+    setServiceState("offline", "سامانه در دسترس نیست");
+  }
 }
 
 function checkService() {
