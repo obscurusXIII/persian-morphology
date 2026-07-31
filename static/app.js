@@ -348,21 +348,87 @@ tabs.forEach((tab, index) => {
   });
 });
 
-async function checkService() {
+const serviceRetryDelays = [0, 2000, 5000, 10000, 15000];
+const serviceRequestTimeout = 12000;
+const serviceRecheckAfter = 60000;
+let serviceCheckPromise = null;
+let serviceLastCheckedAt = 0;
+
+function setServiceState(state, label) {
+  serviceState.classList.remove("is-checking", "is-online", "is-offline");
+  serviceState.classList.add(`is-${state}`);
+  serviceStateLabel.textContent = label;
+}
+
+function wait(milliseconds) {
+  return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+}
+
+async function probeService() {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), serviceRequestTimeout);
+
   try {
-    const response = await fetch("/health");
+    const response = await fetch("/health", {
+      cache: "no-store",
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
-    serviceState.classList.add("is-online");
-    serviceStateLabel.textContent = "سامانه آماده است";
-  } catch {
-    serviceState.classList.add("is-offline");
-    serviceStateLabel.textContent = "سامانه در دسترس نیست";
+
+    const payload = await response.json();
+    if (payload.status !== "ok") {
+      throw new Error("Unexpected health response");
+    }
+  } finally {
+    window.clearTimeout(timeout);
   }
 }
 
-checkService();
+async function runServiceCheck() {
+  setServiceState("checking", "در حال اتصال به سامانه");
+
+  for (const delay of serviceRetryDelays) {
+    if (delay) {
+      await wait(delay);
+    }
+
+    try {
+      await probeService();
+      setServiceState("online", "سامانه آماده است");
+      return;
+    } catch {
+      // Render may reject a request while a free instance is waking up.
+    }
+  }
+
+  setServiceState("offline", "سامانه در دسترس نیست");
+}
+
+function checkService() {
+  if (serviceCheckPromise) {
+    return serviceCheckPromise;
+  }
+
+  serviceCheckPromise = runServiceCheck().finally(() => {
+    serviceLastCheckedAt = Date.now();
+    serviceCheckPromise = null;
+  });
+  return serviceCheckPromise;
+}
+
+void checkService();
+
+document.addEventListener("visibilitychange", () => {
+  const checkIsStale = Date.now() - serviceLastCheckedAt >= serviceRecheckAfter;
+  if (!document.hidden && checkIsStale) {
+    void checkService();
+  }
+});
+
+window.addEventListener("online", () => void checkService());
 
 const fstFlow = document.querySelector(".fst-flow");
 const workbench = document.querySelector(".workbench");

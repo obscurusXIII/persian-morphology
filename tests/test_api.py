@@ -142,3 +142,14 @@ def test_footer_version_markup_and_display_are_stable() -> None:
     assert 'id="version-dash">-</b>' in html.text
     assert 'id="app-version" dir="ltr">۰.۲</b>' in html.text
     assert "appVersion.textContent" not in javascript.text
+
+
+def test_frontend_health_check_recovers_from_render_cold_starts() -> None:
+    javascript = client.get("/app.js")
+
+    assert javascript.status_code == 200
+    assert "serviceRetryDelays" in javascript.text
+    assert 'cache: "no-store"' in javascript.text
+    assert 'payload.status !== "ok"' in javascript.text
+    assert 'setServiceState("checking", "در حال اتصال به سامانه")' in javascript.text
+    assert 'window.addEventListener("online"' in javascript.text
