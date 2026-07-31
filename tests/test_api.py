@@ -114,3 +114,31 @@ def test_static_frontend_is_served() -> None:
 
     assert response.status_code == 200
     assert 'id="analyze-form"' in response.text
+
+
+def test_frontend_fonts_are_served_and_declared_correctly() -> None:
+    css = client.get("/app.css")
+
+    assert css.status_code == 200
+    for filename in (
+        "w_Yekan.ttf",
+        "w_Yekan Italic.ttf",
+        "w_Yekan Bold.ttf",
+        "w_Yekan Black.ttf",
+    ):
+        assert f'/assets/fonts/{filename}' in css.text
+        font = client.get(f"/assets/fonts/{filename}")
+        assert font.status_code == 200
+        assert font.content
+
+    assert "font-style: bold" not in css.text
+    assert "font-style: bolder" not in css.text
+
+
+def test_footer_version_markup_and_display_are_stable() -> None:
+    html = client.get("/")
+    javascript = client.get("/app.js")
+
+    assert 'id="version-dash">-</b>' in html.text
+    assert 'id="app-version" dir="ltr">۰.۲</b>' in html.text
+    assert "appVersion.textContent" not in javascript.text

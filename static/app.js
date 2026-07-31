@@ -32,7 +32,6 @@ const analyzeResponse = document.querySelector("#analyze-response");
 const generateResponse = document.querySelector("#generate-response");
 const serviceState = document.querySelector("#service-state");
 const serviceStateLabel = document.querySelector("#service-state-label");
-const appVersion = document.querySelector("#app-version");
 const tabs = [...document.querySelectorAll("[role='tab']")];
 
 function element(tag, className, text) {
@@ -355,10 +354,8 @@ async function checkService() {
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
-    const payload = await response.json();
     serviceState.classList.add("is-online");
     serviceStateLabel.textContent = "سامانه آماده است";
-    appVersion.textContent = payload.version;
   } catch {
     serviceState.classList.add("is-offline");
     serviceStateLabel.textContent = "سامانه در دسترس نیست";
