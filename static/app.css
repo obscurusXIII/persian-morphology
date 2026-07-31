@@ -273,6 +273,7 @@ main {
 .hero-kicker {
   margin: 0 0 0.5rem;
   color: var(--rust);
+  opacity: 0.4;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.72rem;
   font-weight: 700;
@@ -417,7 +418,7 @@ main {
 }
 
 .tool-panel {
-  padding: 0 0.85rem 0.85rem;
+  padding: 0 0.85rem 1.2rem;
 }
 
 .tool-grid {
