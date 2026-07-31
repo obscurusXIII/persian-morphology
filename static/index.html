@@ -7,8 +7,9 @@
       name="description"
       content="تحلیل و تولید صورت‌های فعلی فارسی معیار با استفاده از HFST و صرف توزیعی"
     />
-    <meta name="theme-color" content="#123b37" />
-    <title>سامانهٔ صرف فعل فارسی</title>
+    <meta name="theme-color" content="#3e000c" />
+    <title>واکاو — تحلیل ساخت‌واژهٔ فارسی</title>
+    <link rel="icon" href="/assets/images/vakav-favicon.png" />
     <link rel="stylesheet" href="/app.css" />
     <script src="/app.js" defer></script>
   </head>
@@ -16,23 +17,11 @@
     <a class="skip-link" href="#workbench">رفتن به ابزار</a>
 
     <header class="site-header">
-      <a class="brand" href="/" aria-label="صفحهٔ اصلی سامانهٔ صرف فعل فارسی">
-        <span class="brand-mark" aria-hidden="true">ف</span>
-        <span>
-          <strong>صرف فارسی</strong>
-          <small lang="en" dir="ltr">Persian verbal morphology</small>
-        </span>
+      <a class="brand" href="/" aria-label="صفحهٔ اصلی واکاو">
+        <img src="/assets/images/vakav-lettering.svg" alt="واکاو" />
       </a>
 
       <nav class="header-actions" aria-label="پیوندهای پروژه">
-        <span class="service-state" id="service-state" role="status">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span id="service-state-label">در حال بررسی</span>
-        </span>
-        <a class="text-link" href="/docs" target="_blank" rel="noopener">
-          مستندات API
-          <span aria-hidden="true">↗</span>
-        </a>
         <a
           class="icon-link"
           href="https://github.com/obscurusXIII/persian-morphology"
@@ -47,285 +36,291 @@
             />
           </svg>
         </a>
+        <a href="/docs" target="_blank" rel="noopener">API تحقیقاتی</a>
+        <a href="https://github.com/obscurusXIII/persian-morphology/tree/main/data">
+          پایگاه دادهٔ زبان‌شناسی
+        </a>
+        <span class="service-state" id="service-state" role="status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="service-state-label">در حال بررسی</span>
+        </span>
       </nav>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-copy">
-          <p class="eyebrow">
-            <span aria-hidden="true"></span>
-            نسخهٔ پژوهشی · فارسی معیار
-          </p>
-          <h1 id="page-title">ساختِ فعل را<br />واژه‌به‌واژه ببینید.</h1>
-          <p class="hero-lead">
-            تحلیل و تولید صورت‌های فعلی با یک دستور متناهی‌حال مبتنی بر صرف
-            توزیعی؛ از ریشهٔ انتزاعی تا زمان، نمود، وجه و مطابقه.
-          </p>
-          <div class="scope-note">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 8v4m0 4h.01M3.5 12a8.5 8.5 0 1 0 17 0 8.5 8.5 0 0 0-17 0Z" />
-            </svg>
-            <p>
-              پوشش کنونی عمداً فقط به <strong>دستگاه فعلی</strong> محدود است؛
-              فعل مرکب و رفع ابهام جمله‌ای در این مرحله پیاده‌سازی نشده‌اند.
-            </p>
-          </div>
-        </div>
-
-        <aside class="structure-card" aria-label="نمونهٔ ساخت تحلیل">
-          <div class="structure-card-head">
-            <span>ساخت تحلیل</span>
-            <span lang="en" dir="ltr">DM → HFST</span>
-          </div>
-          <div class="analysis-preview" dir="ltr">
-            <span class="root-token" dir="rtl">√رو</span>
-            <span>V</span>
-            <span>Pres</span>
-            <span>Ind</span>
-            <span>Prog</span>
-            <span>Neg</span>
-            <span>P1</span>
-            <span>Sg</span>
-          </div>
-          <div class="surface-arrow">
-            <span aria-hidden="true">↓</span>
-            <span>درج واژگانی و تحقق واجی</span>
-          </div>
-          <p class="surface-form" lang="fa" dir="rtl">نمی‌روم</p>
-          <div class="structure-footer">
-            <span>ریشه در تحلیل: <b>رو</b></span>
-            <span>صورت تحقق‌یافته: <b>رو</b></span>
-          </div>
-        </aside>
+      <section class="hero-headline" aria-labelledby="page-title">
+        <h1 id="page-title">تحلیل ساخت‌واژهٔ فارسی — طبق صرف توزیعی</h1>
+        <p>فعلاً فقط از افعال فارسی پشتیبانی می‌شود.</p>
       </section>
 
-      <section class="workbench" id="workbench" aria-labelledby="workbench-title">
-        <div class="workbench-header">
-          <div>
-            <p class="section-kicker" lang="en" dir="ltr">FINITE-STATE WORKBENCH</p>
-            <h2 id="workbench-title">میز کار صرفی</h2>
-          </div>
-          <div class="tabs" role="tablist" aria-label="انتخاب ابزار">
-            <button
-              class="tab is-active"
-              id="analyze-tab"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              aria-controls="analyze-panel"
-              data-tab="analyze"
-            >
-              تحلیل‌گر
-            </button>
-            <button
-              class="tab"
-              id="generate-tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              aria-controls="generate-panel"
-              data-tab="generate"
-              tabindex="-1"
-            >
-              صورت‌ساز
-            </button>
-          </div>
-        </div>
-
-        <section
-          class="tool-panel"
-          id="analyze-panel"
-          role="tabpanel"
-          aria-labelledby="analyze-tab"
-        >
-          <div class="tool-grid">
-            <div class="query-column">
-              <form id="analyze-form" novalidate>
-                <label class="field-label" for="word">صورت فعلی</label>
-                <p class="field-help" id="word-help">
-                  یک واژه یا رشتهٔ فعلیِ ثابت وارد کنید.
-                </p>
-                <div class="input-row">
-                  <input
-                    id="word"
-                    name="word"
-                    type="text"
-                    value="نمی‌روم"
-                    maxlength="500"
-                    autocomplete="off"
-                    autocapitalize="off"
-                    spellcheck="false"
-                    aria-describedby="word-help"
-                    required
-                  />
-                  <button class="primary-button" type="submit">
-                    <span>تحلیل کن</span>
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m8 5 7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <label class="check-row">
-                  <input id="normalize-input" type="checkbox" checked />
-                  <span class="check-control" aria-hidden="true"></span>
-                  <span>یکنواخت‌سازی نویسه‌ها، فاصله و نیم‌فاصله</span>
-                </label>
-              </form>
-
-              <div class="examples" aria-label="نمونه‌های تحلیل">
-                <span>نمونه‌ها</span>
-                <div>
-                  <button type="button" data-analyze-example="رفتم">رفتم</button>
-                  <button type="button" data-analyze-example="نمی‌روم">نمی‌روم</button>
-                  <button type="button" data-analyze-example="رفته">رفته</button>
-                  <button type="button" data-analyze-example="بخورید">بخورید</button>
-                  <button type="button" data-analyze-example="نرفته بودم">
-                    نرفته بودم
-                  </button>
-                  <button type="button" data-analyze-example="نمی‌نشاندیم">
-                    نمی‌نشاندیم
-                  </button>
-                </div>
+      <div class="fst-flow">
+        <section class="hero-section" aria-label="ابزار تحلیل و تولید">
+          <section class="workbench" id="workbench" aria-labelledby="workbench-title">
+            <div class="workbench-header">
+              <div>
+                <p class="section-kicker" lang="en" dir="ltr">FINITE-STATE WORKBENCH</p>
+                <h2 id="workbench-title">میز کار صرفی</h2>
               </div>
-            </div>
-
-            <div
-              class="response-column"
-              id="analyze-response"
-              aria-live="polite"
-              aria-busy="false"
-            >
-              <div class="empty-state">
-                <span class="empty-glyph" aria-hidden="true">∑</span>
-                <h3>آمادهٔ تحلیل</h3>
-                <p>نتیجه و همهٔ خوانش‌های مجاز اینجا نمایش داده می‌شوند.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="tool-panel"
-          id="generate-panel"
-          role="tabpanel"
-          aria-labelledby="generate-tab"
-          hidden
-        >
-          <div class="tool-grid">
-            <div class="query-column">
-              <form id="generate-form" novalidate>
-                <label class="field-label" for="analysis">رشتهٔ تحلیل</label>
-                <p class="field-help" id="analysis-help">
-                  برچسب‌ها را با ترتیب تعریف‌شده در دستور وارد کنید.
-                </p>
-                <textarea
-                  id="analysis"
-                  name="analysis"
-                  rows="3"
-                  maxlength="500"
-                  dir="auto"
-                  spellcheck="false"
-                  aria-describedby="analysis-help"
-                  required
-                >رو+V+Past+Ind+P1+Sg</textarea>
-                <button class="primary-button full-button" type="submit">
-                  <span>صورت را بساز</span>
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="m8 5 7 7-7 7" />
-                  </svg>
+              <div class="tabs" role="tablist" aria-label="انتخاب ابزار">
+                <button
+                  class="tab is-active"
+                  id="analyze-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="analyze-panel"
+                  data-tab="analyze"
+                >
+                  تحلیل‌گر
                 </button>
-              </form>
+                <button
+                  class="tab"
+                  id="generate-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="generate-panel"
+                  data-tab="generate"
+                  tabindex="-1"
+                >
+                  صورت‌ساز
+                </button>
+              </div>
+            </div>
 
-              <div class="examples" aria-label="نمونه‌های تولید">
-                <span>نمونه‌ها</span>
-                <div class="analysis-examples">
-                  <button type="button" data-generate-example="رو+V+Past+Ind+P1+Sg">
-                    گذشتهٔ ساده
-                  </button>
-                  <button
-                    type="button"
-                    data-generate-example="رو+V+Pres+Ind+Perf+P1+Sg"
-                  >
-                    حال کامل
-                  </button>
-                  <button
-                    type="button"
-                    data-generate-example="رو+V+PV=در+Pres+Ind+Prog+Neg+P3+Pl"
-                  >
-                    پیش‌فعل و نفی
-                  </button>
-                  <button
-                    type="button"
-                    data-generate-example="نشین+V+Caus+Past+Ind+Prog+Neg+P1+Pl"
-                  >
-                    سببی
-                  </button>
+            <section
+              class="tool-panel"
+              id="analyze-panel"
+              role="tabpanel"
+              aria-labelledby="analyze-tab"
+            >
+              <div class="tool-grid">
+                <div class="query-column">
+                  <form id="analyze-form" novalidate>
+                    <label class="field-label" for="word">صورت فعلی</label>
+                    <p class="field-help" id="word-help">
+                      یک واژه یا رشتهٔ فعلیِ ثابت وارد کنید.
+                    </p>
+                    <div class="input-row">
+                      <input
+                        id="word"
+                        name="word"
+                        type="text"
+                        value="نمی‌روم"
+                        maxlength="500"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        aria-describedby="word-help"
+                        required
+                      />
+                      <button class="primary-button" type="submit">
+                        <span>تحلیل کن</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="m8 5 7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                    <label class="check-row">
+                      <input id="normalize-input" type="checkbox" checked />
+                      <span class="check-control" aria-hidden="true"></span>
+                      <span>یکنواخت‌سازی نویسه‌ها، فاصله و نیم‌فاصله</span>
+                    </label>
+                  </form>
+
+                  <div class="examples" aria-label="نمونه‌های تحلیل">
+                    <span>نمونه‌ها</span>
+                    <div>
+                      <button type="button" data-analyze-example="رفتم">رفتم</button>
+                      <button type="button" data-analyze-example="نمی‌روم">نمی‌روم</button>
+                      <button type="button" data-analyze-example="رفته">رفته</button>
+                      <button type="button" data-analyze-example="بخورید">بخورید</button>
+                      <button type="button" data-analyze-example="نرفته بودم">
+                        نرفته بودم
+                      </button>
+                      <button type="button" data-analyze-example="نمی‌نشاندیم">
+                        نمی‌نشاندیم
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="response-column"
+                  id="analyze-response"
+                  aria-live="polite"
+                  aria-busy="false"
+                >
+                  <div class="empty-state">
+                    <span class="empty-glyph" aria-hidden="true">∑</span>
+                    <h3>آمادهٔ تحلیل</h3>
+                    <p>نتیجه و همهٔ خوانش‌های مجاز اینجا نمایش داده می‌شوند.</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div
-              class="response-column"
-              id="generate-response"
-              aria-live="polite"
-              aria-busy="false"
+            <section
+              class="tool-panel"
+              id="generate-panel"
+              role="tabpanel"
+              aria-labelledby="generate-tab"
+              hidden
             >
-              <div class="empty-state">
-                <span class="empty-glyph" aria-hidden="true">→</span>
-                <h3>آمادهٔ تولید</h3>
-                <p>صورت‌های متناظر با تحلیل در اینجا نمایش داده می‌شوند.</p>
+              <div class="tool-grid">
+                <div class="query-column">
+                  <form id="generate-form" novalidate>
+                    <label class="field-label" for="analysis">رشتهٔ تحلیل</label>
+                    <p class="field-help" id="analysis-help">
+                      برچسب‌ها را با ترتیب تعریف‌شده در دستور وارد کنید.
+                    </p>
+                    <textarea
+                      id="analysis"
+                      name="analysis"
+                      rows="3"
+                      maxlength="500"
+                      dir="auto"
+                      spellcheck="false"
+                      aria-describedby="analysis-help"
+                      required
+                    >رو+V+Past+Ind+P1+Sg</textarea>
+                    <button class="primary-button full-button" type="submit">
+                      <span>صورت را بساز</span>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m8 5 7 7-7 7" />
+                      </svg>
+                    </button>
+                  </form>
+
+                  <div class="examples" aria-label="نمونه‌های تولید">
+                    <span>نمونه‌ها</span>
+                    <div class="analysis-examples">
+                      <button type="button" data-generate-example="رو+V+Past+Ind+P1+Sg">
+                        گذشتهٔ ساده
+                      </button>
+                      <button
+                        type="button"
+                        data-generate-example="رو+V+Pres+Ind+Perf+P1+Sg"
+                      >
+                        حال کامل
+                      </button>
+                      <button
+                        type="button"
+                        data-generate-example="رو+V+PV=در+Pres+Ind+Prog+Neg+P3+Pl"
+                      >
+                        پیش‌فعل و نفی
+                      </button>
+                      <button
+                        type="button"
+                        data-generate-example="نشین+V+Caus+Past+Ind+Prog+Neg+P1+Pl"
+                      >
+                        سببی
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="response-column"
+                  id="generate-response"
+                  aria-live="polite"
+                  aria-busy="false"
+                >
+                  <div class="empty-state">
+                    <span class="empty-glyph" aria-hidden="true">→</span>
+                    <h3>آمادهٔ تولید</h3>
+                    <p>صورت‌های متناظر با تحلیل در اینجا نمایش داده می‌شوند.</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </section>
+          </section>
+        </section>
+
+        <div class="fst-error-route" aria-hidden="true">
+          <svg focusable="false">
+            <defs>
+              <marker
+                id="error-route-arrow"
+                markerWidth="4"
+                markerHeight="4"
+                refX="10"
+                refY="6"
+                orient="auto"
+                markerUnits="strokeWidth"
+                viewBox="0 0 12 12"
+              >
+                <path class="error-route-tip" d="M0 0 12 6 0 12Z" />
+              </marker>
+            </defs>
+            <path
+              class="error-route-path"
+              marker-end="url(#error-route-arrow)"
+            />
+          </svg>
+          <span class="error-route-label">+خطا</span>
+        </div>
+
+        <section class="report-scene" aria-labelledby="report-title">
+          <div class="nastaliq-field" aria-hidden="true">
+            <span data-depth="1">ا</span>
+            <span data-depth="2">و</span>
+            <span data-depth="3">ژ</span>
+            <span data-depth="2">ی</span>
+            <span data-depth="1">ن</span>
+          </div>
+          <img
+            class="sibawayh"
+            src="/assets/images/sibawayh.png"
+            alt="تصویری از سیبویه"
+          />
+          <div class="report-card">
+            <h2 id="report-title">گزارش خطا</h2>
+            <p>
+              اگر تحلیل نادرستی مشاهده کردید، لطفاً از طریق فرم زیر به ما گزارش دهید تا
+              ابزار را بهبود بخشیم.
+            </p>
+            <a
+              class="report-button"
+              href="https://github.com/obscurusXIII/persian-morphology/issues/new"
+              target="_blank"
+              rel="noopener"
+            >
+              ثبت گزارش
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </section>
-      </section>
-
-      <section class="reference-grid" aria-label="راهنمای سامانه">
-        <article>
-          <span class="reference-number">۰۱</span>
-          <div>
-            <h2>تحلیل دقیق، نه حدس بافتی</h2>
-            <p>
-              خروجی هر صورت، مجموعهٔ دقیق خوانش‌های مجاز دستور است. کاربردهای
-              وابسته به بافت نحوی به واژهٔ منفرد تحمیل نمی‌شوند.
-            </p>
-          </div>
-        </article>
-        <article>
-          <span class="reference-number">۰۲</span>
-          <div>
-            <h2>ریشه، نه بنِ تحقق‌یافته</h2>
-            <p>
-              تحلیل از ریشهٔ انتزاعی استفاده می‌کند؛ برای نمونه، «رفتم» به
-              <bdi dir="ltr">رو+V+Past+Ind+P1+Sg</bdi> تحلیل می‌شود.
-            </p>
-          </div>
-        </article>
-        <article>
-          <span class="reference-number">۰۳</span>
-          <div>
-            <h2>ابهام حفظ می‌شود</h2>
-            <p>
-              اگر یک صورت چند ساخت معتبر داشته باشد، همه گزارش می‌شوند؛ «رفته»
-              هم صفت مفعولی است و هم صورت سوم‌شخص مفردِ حال کامل.
-            </p>
-          </div>
-        </article>
-      </section>
+      </div>
     </main>
 
-    <footer>
-      <p>
-        ساخته‌شده با
-        <a href="https://hfst.github.io/" target="_blank" rel="noopener" lang="en">HFST</a>
-        و
-        <a href="/docs" target="_blank" rel="noopener" lang="en">FastAPI</a>
-      </p>
-      <p>
-        <span>نسخهٔ</span>
-        <span id="app-version" dir="ltr">—</span>
-      </p>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-identity">
+          <div class="footer-lockup">
+            <img src="/assets/images/vakav-square.webp" alt="" />
+            <span class="footer-vakav">واکاو</span>
+            <span class="university-name">دانشگاه تهران</span>
+          </div>
+          <p>ابزار آنلاین زبان‌شناسی برای تجزیهٔ ساخت‌واژه و بررسی ساخت‌واژه‌شناسی.</p>
+          <span class="footer-version">نسخهٔ <b id="app-version" dir="ltr">—</b></span>
+        </div>
+
+        <div class="footer-links">
+          <section>
+            <h2>منابع</h2>
+            <span>صرف در نحو</span>
+            <a href="/docs" target="_blank" rel="noopener">مستندات</a>
+            <a href="https://hfst.github.io/" target="_blank" rel="noopener">آموزش HFST</a>
+          </section>
+          <section>
+            <h2>درباره</h2>
+            <span>پدرام ناصرخانلو</span>
+            <span>صرف توزیعی</span>
+            <span>زبان‌شناسی رایانشی دانشگاه تهران</span>
+          </section>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

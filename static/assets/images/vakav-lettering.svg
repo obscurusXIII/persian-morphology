@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="201.57219"
+     height="69.07019"
+     viewBox="0 0 201.57219 69.07019"
+     role="img"
+     aria-labelledby="title desc"
+     shape-rendering="geometricPrecision">
+  <title id="title">نشان نوشتاری واکاو</title>
+  <desc id="desc">نشان نوشتاری چهارقسمتی واکاو با پیکان‌های تیز و هم‌تراز</desc>
+
+  <!-- Source-coordinate boundaries before the group transform: TOP y=52; BOTTOM y=150. -->
+  <g transform="matrix(.70479787 0 0 .70479787 -26.077521 -36.649489)">
+    <path id="left-waw"
+          fill="#fcf6ee"
+          fill-rule="evenodd"
+          d="M37 52h63v98H37v-26h36v-10H37Zm26 26h10v10H63Z"/>
+
+    <path id="middle-kaf"
+          fill="#ff0c0a"
+          d="M149 52h63v26h-36v10h36v62h-94v-26h68v-10h-37ZM100 77l24.5-25L149 77h-11v73h-27V77Z"/>
+
+    <path id="down-arrow-alef"
+          fill="#fcf6ee"
+          d="M223 52h26v72h11l-24 26-24-26h11Z"/>
+
+    <path id="right-waw"
+          fill="#ff0c0a"
+          fill-rule="evenodd"
+          d="M260 52h63v98h-63v-26h36v-10h-36Zm26 26h10v10h-10Z"/>
+  </g>
+</svg>

@@ -29,6 +29,7 @@ def test_container_uses_precompiled_transducers_and_non_root_user() -> None:
 
 def test_frontend_has_both_tools_and_no_external_runtime_assets() -> None:
     html = (PROJECT_ROOT / "static" / "index.html").read_text(encoding="utf-8")
+    css = (PROJECT_ROOT / "static" / "app.css").read_text(encoding="utf-8")
 
     for element_id in (
         'id="analyze-form"',
@@ -42,3 +43,10 @@ def test_frontend_has_both_tools_and_no_external_runtime_assets() -> None:
     assert '<link rel="stylesheet" href="/app.css" />' in html
     assert "fonts.googleapis.com" not in html
     assert "cdn." not in html
+
+    font_path = PROJECT_ROOT / "static" / "assets" / "fonts" / "B_Kufigraph.ttf"
+    assert font_path.is_file()
+    assert font_path.stat().st_size > 0
+    assert 'font-family: "B_Kufigraph"' in css
+    assert "B Kufigraph" not in css
+    assert "B.Kufigraph" not in css

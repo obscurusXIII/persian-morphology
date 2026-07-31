@@ -366,3 +366,183 @@ async function checkService() {
 }
 
 checkService();
+
+const fstFlow = document.querySelector(".fst-flow");
+const workbench = document.querySelector(".workbench");
+const reportCard = document.querySelector(".report-card");
+const errorRoute = document.querySelector(".fst-error-route");
+const errorRouteSvg = errorRoute?.querySelector("svg");
+const errorRoutePath = errorRoute?.querySelector(".error-route-path");
+const errorRouteLabel = errorRoute?.querySelector(".error-route-label");
+
+function roundedErrorRoute(points, radius = 22) {
+  const [start, elbow, track, drop] = points;
+  const horizontalDirection = Math.sign(track.x - elbow.x) || 1;
+  const horizontalRadius = radius * horizontalDirection;
+
+  return [
+    `M ${start.x} ${start.y}`,
+    `H ${elbow.x + radius}`,
+    `Q ${elbow.x} ${start.y} ${elbow.x} ${start.y + radius}`,
+    `V ${track.y - radius}`,
+    `Q ${elbow.x} ${track.y} ${elbow.x + horizontalRadius} ${track.y}`,
+    `H ${track.x - horizontalRadius}`,
+    `Q ${track.x} ${track.y} ${track.x} ${track.y + radius}`,
+    `V ${drop.y}`,
+  ].join(" ");
+}
+
+function layoutErrorRoute() {
+  if (!fstFlow || !workbench || !reportCard || !errorRoutePath) {
+    return;
+  }
+
+  const flowRect = fstFlow.getBoundingClientRect();
+  const workbenchRect = workbench.getBoundingClientRect();
+  const reportRect = reportCard.getBoundingClientRect();
+  const isCompact = window.matchMedia("(max-width: 640px)").matches;
+
+  let start;
+  let elbow;
+  let track;
+  let drop;
+
+  if (isCompact) {
+    const centerX = workbenchRect.left - flowRect.left + workbenchRect.width / 2;
+    start = {
+      x: centerX,
+      y: workbenchRect.bottom - flowRect.top - 3,
+    };
+    elbow = { x: centerX, y: start.y };
+    track = {
+      x: centerX,
+      y: reportRect.top - flowRect.top - 54,
+    };
+    drop = {
+      x: centerX,
+      y: reportRect.top - flowRect.top + 3,
+    };
+    errorRoutePath.setAttribute(
+      "d",
+      `M ${start.x} ${start.y} V ${drop.y}`,
+    );
+  } else {
+    start = {
+      x: workbenchRect.left - flowRect.left + 5,
+      y: workbenchRect.top - flowRect.top + workbenchRect.height * 0.46,
+    };
+    elbow = {
+      x: Math.max(26, start.x - Math.min(90, flowRect.width * 0.07)),
+      y: start.y,
+    };
+    track = {
+      x: reportRect.left - flowRect.left + reportRect.width * 0.62,
+      y: reportRect.top - flowRect.top - 62,
+    };
+    drop = {
+      x: track.x,
+      y: reportRect.top - flowRect.top + 3,
+    };
+    errorRoutePath.setAttribute(
+      "d",
+      roundedErrorRoute([start, elbow, track, drop]),
+    );
+  }
+
+  errorRouteSvg?.setAttribute(
+    "viewBox",
+    `0 0 ${Math.max(1, flowRect.width)} ${Math.max(1, flowRect.height)}`,
+  );
+
+  if (errorRouteLabel) {
+    const labelX = isCompact ? start.x : (elbow.x + track.x) / 2;
+    const labelY = isCompact ? (start.y + drop.y) / 2 : track.y;
+    errorRouteLabel.style.left = `${labelX}px`;
+    errorRouteLabel.style.top = `${labelY}px`;
+  }
+}
+
+let routeFrame;
+function scheduleRouteLayout() {
+  window.cancelAnimationFrame(routeFrame);
+  routeFrame = window.requestAnimationFrame(layoutErrorRoute);
+}
+
+if (fstFlow && workbench && reportCard) {
+  const routeResizeObserver = new ResizeObserver(scheduleRouteLayout);
+  routeResizeObserver.observe(fstFlow);
+  routeResizeObserver.observe(workbench);
+  routeResizeObserver.observe(reportCard);
+  window.addEventListener("resize", scheduleRouteLayout);
+  window.addEventListener("load", scheduleRouteLayout, { once: true });
+  scheduleRouteLayout();
+}
+
+const reportScene = document.querySelector(".report-scene");
+const nastaliqLetters = [...document.querySelectorAll(".nastaliq-field span")];
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let pointerX = 0;
+let pointerY = 0;
+let scrollProgress = 0;
+let parallaxFrame;
+
+function paintParallax() {
+  parallaxFrame = undefined;
+  if (!reportScene || reduceMotion.matches) {
+    return;
+  }
+
+  reportScene.style.setProperty("--sib-x", `${pointerX * -14}px`);
+  reportScene.style.setProperty(
+    "--sib-y",
+    `${pointerY * -8 + scrollProgress * -18}px`,
+  );
+
+  nastaliqLetters.forEach((letter) => {
+    const depth = Number(letter.dataset.depth || 1);
+    letter.style.setProperty("--char-x", `${pointerX * depth * 6}px`);
+    letter.style.setProperty(
+      "--char-y",
+      `${pointerY * depth * 4 + scrollProgress * depth * 8}px`,
+    );
+  });
+}
+
+function scheduleParallax() {
+  if (parallaxFrame === undefined) {
+    parallaxFrame = window.requestAnimationFrame(paintParallax);
+  }
+}
+
+function updateScrollParallax() {
+  if (!reportScene || reduceMotion.matches) {
+    return;
+  }
+  const rect = reportScene.getBoundingClientRect();
+  const viewportCenter = window.innerHeight / 2;
+  const sceneCenter = rect.top + rect.height / 2;
+  scrollProgress = Math.max(-1, Math.min(1, (sceneCenter - viewportCenter) / window.innerHeight));
+  scheduleParallax();
+}
+
+if (reportScene) {
+  reportScene.addEventListener("pointermove", (event) => {
+    if (reduceMotion.matches) {
+      return;
+    }
+    const rect = reportScene.getBoundingClientRect();
+    pointerX = (event.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    pointerY = (event.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    scheduleParallax();
+  });
+
+  reportScene.addEventListener("pointerleave", () => {
+    pointerX = 0;
+    pointerY = 0;
+    scheduleParallax();
+  });
+
+  window.addEventListener("scroll", updateScrollParallax, { passive: true });
+  window.addEventListener("resize", updateScrollParallax);
+  updateScrollParallax();
+}
