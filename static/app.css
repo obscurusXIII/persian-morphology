@@ -196,7 +196,6 @@ img {
   align-items: center;
   gap: 0.45rem;
   color: rgb(252 246 238 / 72%);
-  font-size: 0.72rem;
 }
 
 .status-dot {
@@ -235,6 +234,7 @@ main {
   font-size: clamp(1.85rem, 4vw, 2.5rem);
   letter-spacing: -0.035em;
   line-height: 0.8;
+  text-shadow: 0 4px 3px rgb(40 29 15 / 20%);
 }
 
 .hero-headline p {
@@ -326,6 +326,7 @@ main {
   border-radius: 0.55rem;
   background: var(--paper);
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  box-shadow: 0 12px 40px rgb(40 29 15 / 80%);
 }
 
 .query-column,
@@ -612,13 +613,11 @@ textarea:focus {
 
 .result-summary h3 {
   margin: 0;
-  font-size: 0.92rem;
 }
 
 .result-summary p {
   margin: 0.2rem 0 0;
   color: var(--ink-soft);
-  font-size: 0.7rem;
 }
 
 .normalized-note,
@@ -670,7 +669,7 @@ textarea:focus {
   margin: 0.7rem 0;
   color: var(--maroon);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.76rem;
+  font-size: 1rem;
   font-weight: 650;
   line-height: 1.7;
 }
@@ -690,7 +689,7 @@ textarea:focus {
   border-radius: 0.38rem;
   background: var(--sand);
   color: var(--ink-soft);
-  font-size: 0.61rem;
+  font-size: 0.85rem;
 }
 
 .tag b {
