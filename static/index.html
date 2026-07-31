@@ -22,6 +22,9 @@
       </a>
 
       <nav class="header-actions" aria-label="پیوندهای پروژه">
+        <a href="https://github.com/obscurusXIII/persian-morphology/tree/main/data">
+          پایگاه دادهٔ زبان‌شناسی
+        </a>
         <a
           class="icon-link"
           href="https://github.com/obscurusXIII/persian-morphology"
@@ -36,10 +39,6 @@
             />
           </svg>
         </a>
-        <a href="/docs" target="_blank" rel="noopener">API تحقیقاتی</a>
-        <a href="https://github.com/obscurusXIII/persian-morphology/tree/main/data">
-          پایگاه دادهٔ زبان‌شناسی
-        </a>
         <span class="service-state" id="service-state" role="status">
           <span class="status-dot" aria-hidden="true"></span>
           <span id="service-state-label">در حال بررسی</span>
@@ -49,7 +48,7 @@
 
     <main>
       <section class="hero-headline" aria-labelledby="page-title">
-        <h1 id="page-title">تحلیل ساخت‌واژهٔ فارسی — طبق صرف توزیعی</h1>
+        <h1 id="page-title">تحلیل ساخت‌واژهٔ فارسی | طبق صرف توزیعی</h1>
         <p>فعلاً فقط از افعال فارسی پشتیبانی می‌شود.</p>
       </section>
 
@@ -58,7 +57,6 @@
           <section class="workbench" id="workbench" aria-labelledby="workbench-title">
             <div class="workbench-header">
               <div>
-                <p class="section-kicker" lang="en" dir="ltr">FINITE-STATE WORKBENCH</p>
                 <h2 id="workbench-title">میز کار صرفی</h2>
               </div>
               <div class="tabs" role="tablist" aria-label="انتخاب ابزار">
@@ -287,7 +285,7 @@
               rel="noopener"
             >
               ثبت گزارش
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true" id="report_icon">🗎</span>
             </a>
           </div>
         </section>
@@ -298,12 +296,16 @@
       <div class="footer-inner">
         <div class="footer-identity">
           <div class="footer-lockup">
-            <img src="/assets/images/vakav-square.webp" alt="" />
+            <img class="footer-vakav" src="/assets/images/vakav-square.webp" alt="" />
             <span class="footer-vakav">واکاو</span>
             <span class="university-name">دانشگاه تهران</span>
           </div>
           <p>ابزار آنلاین زبان‌شناسی برای تجزیهٔ ساخت‌واژه و بررسی ساخت‌واژه‌شناسی.</p>
-          <span class="footer-version">نسخهٔ <b id="app-version" dir="ltr">—</b></span>
+          <span class="footer-version">
+            نسخه
+            <b id="version-dash"">-</b>
+            <b id="app-version" dir="ltr">۰.۲</b>
+          </span>
         </div>
 
         <div class="footer-links">

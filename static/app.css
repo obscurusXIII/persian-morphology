@@ -14,6 +14,31 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "w_Yekan";
+  src: url("/assets/fonts/w_Yekan") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "w_Yekan";
+  src: url("/assets/fonts/w_Yekan Bold") format("truetype");
+  font-style: bold;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "w_Yekan";
+  src: url("/assets/fonts/w_Yekan") format("truetype");
+  font-style: bolder;
+  font-weight: 800;
+  font-display: swap;
+}
+
+
 :root {
   color-scheme: light;
   --cream: #fcf6ee;
@@ -28,9 +53,9 @@
   --red: #ff0c0a;
   --danger-bg: #fff0ee;
   --line: rgb(139 90 60 / 42%);
-  --shadow: 0 12px 20px rgb(40 29 21 / 49%);
+  --shadow: 0 12px 40px rgb(40 29 15 / 60%);
   --soft-shadow: 0 12px 32px rgb(40 29 21 / 8%);
-  font-family: Tahoma, "Noto Sans Arabic", Arial, sans-serif;
+  font-family: w_Yekan, Tahoma;
   font-synthesis: none;
 }
 
@@ -107,26 +132,26 @@ img {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--rust);
-  background: var(--maroon);
+  background: var(--ink-soft);
   color: var(--cream);
 }
 
 .brand {
   display: block;
-  width: 64px;
-  height: 23px;
+  width: 68px;
 }
 
 .brand img {
   width: 100%;
   height: 100%;
+  filter: drop-shadow(2px 2px 10px var(--ink));
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 2rem;
-  font-size: 0.78rem;
+  font-size: 1rem;
 }
 
 .header-actions a {
@@ -189,22 +214,25 @@ main {
 }
 
 .hero-headline {
-  min-height: 162px;
-  padding: 2.6rem max(1.5rem, calc((100vw - 1000px) / 2)) 0;
+  display: flex;
+  justify-content: space-around;
+  min-height: 100px;
+  padding: 1.8rem max(1.5rem, calc((100vw - 1000px) / 2)) 0;
   text-align: right;
+  background: var(--cream);
 }
 
 .hero-headline h1 {
   margin: 0;
-  font-size: clamp(2.35rem, 4vw, 3.125rem);
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
   letter-spacing: -0.035em;
-  line-height: 1.5;
+  line-height: 0.8;
 }
 
 .hero-headline p {
   margin: 0.6rem 0 0;
   color: var(--ink-soft);
-  font-size: 1.08rem;
+  font-size: 1.2rem;
 }
 
 .fst-flow {
@@ -214,7 +242,7 @@ main {
 
 .hero-section {
   position: relative;
-  padding: 4rem max(1.5rem, calc((100vw - 1000px) / 2)) 11rem;
+  padding: 1rem max(1.5rem, calc((100vw - 1000px) / 2)) 6rem;
   background: var(--cream);
 }
 
@@ -250,7 +278,7 @@ main {
 
 .workbench-header h2 {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.6rem;
 }
 
 .tabs {
@@ -269,7 +297,7 @@ main {
   background: transparent;
   color: rgb(252 246 238 / 68%);
   cursor: pointer;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -306,14 +334,14 @@ main {
 .field-label {
   display: block;
   color: var(--ink);
-  font-size: 0.82rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
 .field-help {
   margin: 0.2rem 0 0.85rem;
   color: var(--ink-soft);
-  font-size: 0.72rem;
+  font-size: 1.2rem;
 }
 
 .input-row {
@@ -329,6 +357,7 @@ textarea {
   background: var(--cream);
   color: var(--ink);
   outline: none;
+  font-size: 1.2rem;
 }
 
 input[type="text"] {
@@ -342,7 +371,7 @@ textarea {
   padding: 0.85rem;
   resize: vertical;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 input[type="text"]:focus,
@@ -364,7 +393,7 @@ textarea:focus {
   background: var(--red);
   color: white;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 800;
   text-decoration: none;
   transition:
@@ -409,7 +438,7 @@ textarea:focus {
   gap: 0.55rem;
   color: var(--ink-soft);
   cursor: pointer;
-  font-size: 0.72rem;
+  font-size: 1rem;
 }
 
 .check-row input {
@@ -460,7 +489,7 @@ textarea:focus {
   display: block;
   margin-bottom: 0.6rem;
   color: var(--ink-soft);
-  font-size: 0.68rem;
+  font-size: 1.5rem;
   font-weight: 750;
 }
 
@@ -478,7 +507,7 @@ textarea:focus {
   background: transparent;
   color: var(--ink-soft);
   cursor: pointer;
-  font-size: 0.69rem;
+  font-size: .9rem;
   transition:
     border-color 150ms ease,
     color 150ms ease,
@@ -532,7 +561,7 @@ textarea:focus {
 .error-state h3,
 .no-results h3 {
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 1.1rem;
 }
 
 .empty-state p,
@@ -541,7 +570,7 @@ textarea:focus {
   max-width: 21rem;
   margin: 0.35rem 0 0;
   color: var(--ink-soft);
-  font-size: 0.73rem;
+  font-size: 1rem;
 }
 
 .loading-state span {
@@ -734,8 +763,8 @@ textarea:focus {
   border-radius: 999px;
   background: var(--cream);
   color: var(--red);
-  font-family: "B_Kufigraph", Tahoma, sans-serif;
-  font-size: 1.6rem;
+  font-family: "w_Yekan";
+  font-size: 2rem;
   line-height: 1;
   transform: translate(-50%, -50%);
 }
@@ -846,7 +875,7 @@ textarea:focus {
 .report-card p {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   line-height: 1.8;
 }
 
@@ -855,7 +884,12 @@ textarea:focus {
   padding-inline: 1.75rem;
   border-radius: 1rem;
   box-shadow: 0 10px 18px rgb(255 12 10 / 20%);
-  font-size: 0.95rem;
+  font-size: 1.25rem;
+}
+
+#report_icon {
+  font-size: 2rem;
+  font-weight: 100;
 }
 
 .site-footer {
@@ -880,7 +914,7 @@ textarea:focus {
 .footer-lockup {
   display: flex;
   min-height: 2.15rem;
-  align-items: center;
+  align-items: flex-end;
   gap: 0.7rem;
 }
 
@@ -892,8 +926,13 @@ textarea:focus {
 
 .footer-vakav {
   font-family: "B_Kufigraph", Tahoma, sans-serif;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   line-height: 1;
+}
+
+img.footer-vakav:hover {
+  transform: scale(-1);
+  cursor: pointer;
 }
 
 .university-name {
@@ -906,7 +945,7 @@ textarea:focus {
 .footer-identity p {
   margin: 1.25rem 0 0;
   color: rgb(252 246 238 / 86%);
-  font-size: 0.82rem;
+  font-size: 1rem;
   line-height: 1.8;
 }
 
@@ -914,7 +953,11 @@ textarea:focus {
   display: block;
   margin-top: 0.7rem;
   color: rgb(252 246 238 / 55%);
-  font-size: 0.67rem;
+  font-size: 0.9rem;
+}
+
+.footer-version #version-dash {
+  padding: 0px 0.1rem 0px 0.1rem;
 }
 
 .footer-links {
@@ -931,13 +974,13 @@ textarea:focus {
 .footer-links h2 {
   margin: 0 0 0.15rem;
   color: var(--cream);
-  font-size: 0.75rem;
+  font-size: 1.2rem;
 }
 
 .footer-links a,
 .footer-links span {
   color: rgb(252 246 238 / 84%);
-  font-size: 0.78rem;
+  font-size: 1rem;
   text-decoration: none;
 }
 
@@ -1009,11 +1052,12 @@ textarea:focus {
 
   .hero-headline {
     min-height: auto;
-    padding: 2.5rem 1rem 2rem;
+    padding: 2rem 1rem 2rem;
+    background: var(--cream);
   }
 
   .hero-headline h1 {
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size: clamp(1.1rem, 10vw, 1.6rem);
     line-height: 1.45;
   }
 
@@ -1094,7 +1138,7 @@ textarea:focus {
   }
 
   .report-card p {
-    font-size: 0.82rem;
+    font-size: 1rem;
   }
 
   .site-footer {
