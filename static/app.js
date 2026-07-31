@@ -183,7 +183,7 @@ function renderAnalyses(payload) {
   const summaryCopy = element("div");
   summaryCopy.append(
     element("h3", "", `${persianNumber.format(payload.count)} تحلیل یافت شد`),
-    element("p", "", "هر خوانش یک مسیر مستقل در تحلیل‌گر متناهی‌حال است."),
+    element("p", "", "هر خوانش یک مسیر مستقل در تحلیل‌گر حالت‌متناهی است."),
   );
   summary.append(summaryCopy);
   analyzeResponse.append(summary);
