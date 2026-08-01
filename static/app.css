@@ -1153,6 +1153,7 @@ img.footer-vakav:hover {
 
   .hero-headline {
     align-items: start;
+    margin-top: 1rem;
     gap: 1.5rem;
     grid-template-columns: 1fr;
   }
@@ -1220,7 +1221,7 @@ img.footer-vakav:hover {
 
   .hero-headline {
     min-height: auto;
-    padding: 2.25rem 1rem 1.75rem;
+    padding: 0rem 1rem 1.75rem;
     gap: 1.25rem;
     background: var(--cream);
   }
