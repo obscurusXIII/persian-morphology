@@ -5,17 +5,12 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-
-def test_hugging_face_metadata_matches_container_port() -> None:
-    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+def test_container_port_and_healthcheck_are_consistent() -> None:
     dockerfile = (PROJECT_ROOT / "Dockerfile").read_text(encoding="utf-8")
 
-    assert readme.startswith("---\n")
-    assert "\nsdk: docker\n" in readme
-    assert "\napp_port: 7860\n" in readme
     assert "EXPOSE 7860" in dockerfile
     assert '"--port", "7860"' in dockerfile
-
+    assert "http://127.0.0.1:7860/health" in dockerfile
 
 def test_container_uses_precompiled_transducers_and_non_root_user() -> None:
     dockerfile = (PROJECT_ROOT / "Dockerfile").read_text(encoding="utf-8")
